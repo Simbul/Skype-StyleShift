@@ -4,6 +4,11 @@
 
 Because the new Skype chat is WebKit powered, and we enhanced it using HTML, CSS and JavaScript.
 
+## Features
+
+* Reduced whitespace
+* Every image URL is expanded in a linked thumbnail
+
 ## How to use
 
 This is how:
