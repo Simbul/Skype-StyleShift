@@ -1,0 +1,1199 @@
+body {
+	font: normal 11px/15px Helvetica, sans-serif;
+	color: rgba(0, 0, 0, 1.0);
+}
+
+strong {
+	font-weight: bold;
+}
+
+.hidden {
+	display: none;
+}
+
+#conversation {
+	min-width: 500px;
+}
+
+	/* Conversation items */
+
+	#conversation .item {
+		clear: both;
+	}
+	
+		#conversation .item div.body {
+			overflow: hidden;
+			word-wrap: break-word;
+		}
+
+			#conversation .item div.body a {
+				color: #007ec4;
+				text-decoration: none;
+			}
+
+			#conversation .item div.body a:hover {
+				color: #007ec4;
+				border-bottom: 1px dotted #007ec4;
+				text-decoration: none;
+			}
+			
+		#conversation .item .pill {
+			height: 22px;
+			padding: 0;
+			margin: 0;
+			font: normal 11px/21px Helvetica, sans-serif;
+			color: #000;
+			text-shadow: #e5e5e5 0 1px 0;
+			-webkit-border-image: url(../gfx/generic-pill-default.png) 1 12 repeat;
+			border-width: 1px 12px;
+		}
+		
+		#conversation .item .avatar {
+			display: none !important;
+		}
+		
+		#conversation .item button {
+			border: none;
+			background-color: transparent;
+			outline: none;
+		}
+		
+		#conversation .item .delete,
+		#conversation .item .quicklook,
+		#conversation .item .reveal,
+		#conversation .item .cancel,
+		#conversation .item .edit {
+			width: 14px;
+			height: 14px;
+			background: url(../gfx/buttons-14.png) no-repeat 0 0;
+			vertical-align: middle;
+			display: none;
+			opacity: 0.25;
+		}
+		
+		#conversation .item .delete:hover,
+		#conversation .item .quicklook:hover,
+		#conversation .item .reveal:hover,
+		#conversation .item .cancel:hover,
+		#conversation .item .edit:hover {
+			opacity: 0.35;
+		}
+		
+		#conversation .item .delete:active,
+		#conversation .item .quicklook:active,
+		#conversation .item .reveal:active,
+		#conversation .item .cancel:active,
+		#conversation .item .edit:active {
+			opacity: 0.45;
+		}
+		
+		
+		#conversation .item .pill:active {
+			-webkit-border-image: url(../gfx/generic-pill-down.png) 1 12 repeat;
+		}
+				
+				
+		#conversation .item .progressbar {
+			display: block;
+			height: 10px;
+			position: relative;
+			margin: 5px 70px 0 60px;
+		}
+
+			#conversation .item .progressbar .total {
+				display: block;
+				background: -webkit-gradient(linear, left bottom, left top,
+					color-stop(0, #f0f0f0),
+					color-stop(0.8, #e8e8e8),
+					color-stop(1, #dbdbdb)
+				);
+				border: 1px solid #bfbfbf;
+				-webkit-border-radius: 4px;
+				border-radius: 4px;
+				height: 6px;
+				position: relative;
+				width: 100%;
+			}
+
+			#conversation .item .progressbar .progress {
+				display: block;
+				background: -webkit-gradient(linear, left bottom, left top,
+					color-stop(0, #12b4f0),
+					color-stop(0.4, #2cbbf0),
+					color-stop(0.5, #61ccf3),
+					color-stop(1, #74d1f3)
+				);
+				border: 1px solid;
+				border-color: #45abd1 #0e96c9 #3ba8d1 #3ba8d1;
+				-webkit-border-radius: 4px;
+				border-radius: 4px;
+				height: 6px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				min-width: 6px;
+			}
+
+			#conversation .item .progressbar .progress.hidden {
+				display: none !important;
+			}
+
+			#conversation .item .progressbar .playhead {
+				display: block;
+				border: 1px solid;
+				border-color: #aaa #959595 #888 #959595;
+				-webkit-border-radius: 6px;
+				border-radius: 6px;
+				height: 10px;
+				width: 10px;
+				position: absolute;
+				top: -3px;
+				right: -3px;
+				background: #ececec;
+			}
+
+				#conversation .item .progressbar .playhead span {
+					border: 1px solid;
+					border-color: #f7f7f7 #eaeaea #d3d3d3 #eaeaea;
+					display: block;
+					width: 8px;
+					height: 8px;
+					-webkit-border-radius: 5px;
+					border-radius: 5px;
+					background: -webkit-gradient(linear, left bottom, left top,
+						color-stop(1, #e1e1e1),
+						color-stop(0, #d3d3d3)
+					);
+				}
+
+	#conversation .emoticon {
+		vertical-align: middle;
+		width: 15px;
+		height: 15px;
+		margin: -4px 0 0 0;
+	}
+
+	/* Chat messages */
+	
+	#conversation .message {
+		padding: 0 7px;
+		position: relative;
+		border-top: 1px solid #efefef;
+	}
+	
+	#conversation .message:first-child {
+		border-top: none;
+	}
+	
+	#conversation .message:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+	
+	#conversation .message.in:last-child {
+		border-bottom: none;
+	}
+	
+	#conversation .message.out {
+		background: #f2faff;
+	}
+	
+		#conversation .message .container {
+			padding: 5px 0;
+		}
+		
+		#conversation .message .head {
+			color: rgba(0, 0, 0, 0.30);
+		}
+		
+		#conversation .message .sender {
+			font-weight: bold;
+			float: left;
+			margin-right: 10px;
+		}
+		
+			#conversation .message .sender a {
+				color: rgba(0, 0, 0, 0.30);
+				text-decoration: none;
+			}
+		
+		#conversation .message .time {
+			color: #000;
+			opacity: 0.3;
+			height: 14px;
+			float: right;
+		}
+		
+		#conversation .message.edited .time {
+			padding-left: 14px;
+			background: url(../gfx/asset-sprite.png) no-repeat 0 -7px;
+		}
+		
+		#conversation .message .delete {
+			background-position: 0 0;
+			position: absolute;
+			right: 7px;
+			top: 22px;
+		}
+		
+		#conversation .message .edit {
+			background-position: 0 -70px;
+			position: absolute;
+			right: 26px;
+			top: 22px;
+		}
+		
+		#conversation .message .avatar {
+			float: left;
+			margin: 2px 0 0 -53px;
+		}
+		
+		#conversation .message div.body {
+			clear: both;
+			padding-right: 0px;
+		}
+		
+		#conversation .message.editable div.body {
+			padding-right: 40px;
+		}
+		
+			#conversation .message div.body a:visited:after {
+				content:"\202f\2713";
+				text-decoration: none;
+			}
+
+			#conversation .message div.body a:visited {
+				color: #8c288c;
+				text-decoration: none;
+			}
+
+			#conversation .message div.body a:visited:hover {
+				color: #8c288c;
+				border-bottom: 1px dotted #8c288c;
+				text-decoration: none;
+			}
+	
+		#conversation .message.editable:hover .delete,
+		#conversation .message.editable:hover .edit {
+			display: block;
+		}
+		
+		#conversation .message.editable.deleted:hover .delete {
+			display: none;
+		}
+		
+		#conversation .message.editable.deleted:hover .time {
+			display: block;
+		}
+
+	#conversation .message.followup {
+		border-top: none;
+	}
+
+		#conversation .message.followup .container {
+			border-top: 1px dotted #efefef;
+		}
+
+		#conversation .message.followup .avatar,
+		#conversation .message.followup .sender {
+			display: none;
+		}
+
+	#conversation .message.read {
+		color: rgba(0, 0, 0, 0.60);
+	}
+	
+	#conversation .message.deleted {
+		color: rgba(0, 0, 0, 0.30);
+	}
+	
+	#conversation .message .body.editMode {
+		border: 1px solid #ccc;
+		padding-left: 3px;
+		padding-right: 30px;
+		background: #fff;
+		margin: -1px 123px -1px -4px;
+		-webkit-box-shadow: 0px 0px 10px #ccc;
+		max-height: 100px;
+		overflow: auto !important;
+	}
+	
+	/* SMS messages */
+
+	#conversation .sms {
+		padding: 0 7px;
+		border-top: 1px solid #efefef;
+		background: #f4f4f4;
+	}
+	
+	#conversation .sms:first-child {
+		border-top: none;
+	}
+	
+		#conversation .sms .container {
+			padding: 5px 0;
+		}
+		
+		#conversation .sms .head {
+			color: rgba(0, 0, 0, 0.30);
+			clear: both;
+		}
+		
+			#conversation .sms .head .avatar {
+				display: none;
+			}
+			
+		
+			#conversation .sms .head:first-child .avatar {
+				display: block;
+			}
+		
+		#conversation .sms .sender {
+			font-weight: bold;
+			margin-right: 10px;
+			float: left;
+		}
+		
+		#conversation .sms .time {
+			height: 14px;
+			color: #000;
+			opacity: 0.3;
+			float: right;
+		}
+		
+		#conversation .sms .avatar {
+			float: left;
+			margin: 1px 0 0 -53px;
+		}
+		
+		#conversation .sms div.body {
+			padding: 0px 127px 0 0;
+			clear: both;
+		}
+
+	#conversation .sms.read {
+		color: rgba(0, 0, 0, 0.60);
+	}
+	
+	/* Calls */
+	
+	#conversation .call {
+		padding: 0 7px;
+		border-top: 1px solid #efefef;
+		background: #fff;
+	}
+	
+	#conversation .call:first-child {
+		border-top: none;
+	}
+	
+	#conversation .call:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+
+		#conversation .call .container {
+			padding: 5px 0;
+		}
+		
+		#conversation .call .head {
+			color: rgba(0, 0, 0, 0.30);
+			margin-bottom: 3px;
+		}
+		
+		#conversation .call .sender {
+			font-weight: bold;
+		}
+		
+			#conversation .call .sender a {
+				color: rgba(0, 0, 0, 0.30);
+				text-decoration: none;
+			}
+		
+		#conversation .call .time {
+			float: right;
+			margin-left: -127px;
+			text-align: right;
+		}
+		
+		#conversation .call .avatar {
+			float: left;
+			margin: 2px 0 0 -53px;
+		}
+		
+		#conversation .call div.body {
+			font-weight: bold;
+			padding-right: 127px;
+			overflow: visible;
+		}
+		
+			#conversation .call div.body .duration {
+				float: right;
+				margin-right: -127px;
+				color: rgba(0, 0, 0, 0.60);
+			}
+	
+	/* Emote */
+	
+	#conversation .emote {
+		padding: 0 150px;
+		border-top: 1px solid #efefef;
+		background: #fff;
+		text-align: center;
+	}
+	
+	#conversation .emote:first-child {
+		border-top: none;
+	}
+	
+	#conversation .emote:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+
+		#conversation .emote .container {
+			padding: 5px 0;
+		}
+		
+		#conversation .emote .head {
+			color: rgba(0, 0, 0, 0.30);
+		}
+		
+		#conversation .emote .avatar {
+			float: left;
+			margin-left: -128px;
+			margin-right: -36px;
+			margin-top: 2px;
+		}
+		
+		#conversation .emote div.body {
+			font-weight: normal;
+			color: rgba(0, 0, 0, 1);
+		}
+		
+	/* Topic */
+
+	#conversation .topic {
+		padding: 0 150px;
+		border-top: 1px solid #efefef;
+		background: #fff;
+		text-align: center;
+	}
+
+	#conversation .topic:first-child {
+		border-top: none;
+	}
+
+	#conversation .topic:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+
+		#conversation .topic .container {
+			padding: 5px 0;
+		}
+
+		#conversation .topic .head {
+			color: rgba(0, 0, 0, 0.30);
+		}
+
+		#conversation .topic .avatar {
+			float: left;
+			margin-left: -128px;
+			margin-right: -36px;
+			margin-top: 2px;
+		}
+
+		#conversation .topic div.body {
+			font-weight: bold;
+			color: rgba(0, 0, 0, 0.30);
+		}
+		
+			#conversation .topic div.body span {
+				color: rgba(0, 0, 0, 1);
+				display: block;
+				font-weight: normal;
+			}
+			#conversation .topic div.body span:before {
+				content: "\201C";
+			}
+			
+			#conversation .topic div.body span:after {
+				content: "\201D";
+			}
+	
+	/* Alert */
+
+	#conversation .alert {
+		padding: 0 150px;
+		border-top: 1px solid #efefef;
+		background: #fff;
+		text-align: center;
+	}
+
+	#conversation .alert:first-child {
+		border-top: none;
+	}
+
+	#conversation .alert:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+
+		#conversation .alert .container {
+			padding: 5px 0;
+		}
+
+		#conversation .alert .head {
+			color: rgba(0, 0, 0, 0.30);
+		}
+
+		#conversation .alert .avatar {
+			float: left;
+			margin-left: -128px;
+			margin-right: -36px;
+			margin-top: 2px;
+		}
+
+		#conversation .alert div.body {
+			font-weight: bold;
+			color: rgba(0, 0, 0, 0.30);
+		}
+
+
+	/* Voicemail */
+	
+	#conversation .voicemail {
+		padding: 0 7px;
+		border-top: 1px solid #efefef;
+		background: #fff;
+	}
+	
+	#conversation .voicemail:first-child {
+		border-top: none;
+	}
+	
+	#conversation .voicemail:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+
+		#conversation .voicemail .container {
+			padding: 5px 0;
+		}
+		
+		#conversation .voicemail .head {
+			color: rgba(0, 0, 0, 0.30);
+			margin-bottom: 1px;
+			padding-bottom: 0;
+		}
+		
+		#conversation .voicemail .sender {
+			font-weight: bold;
+		}
+		
+			#conversation .voicemail .sender a {
+				color: rgba(0, 0, 0, 0.30);
+				text-decoration: none;
+			}
+		
+		#conversation .voicemail .time {
+			float: right;
+			text-align: right;
+		}
+		
+		#conversation .voicemail .avatar {
+			float: left;
+			margin: 2px 0 0 -53px;
+		}
+		
+		#conversation .voicemail .new {
+			display: none;
+			height: 10px;
+			width: 10px;
+			border: 1px solid;
+			border-color: #49add2 #2ea0cb #0392c7 #2ea0cb;
+			-webkit-border-radius: 6px;
+			border-radius: 6px;
+			float: left;
+			margin: 26px 0 0 -23px;
+		}
+		
+		#conversation .voicemail.new .new {
+			display: block;
+		}
+		
+			#conversation .voicemail .new span {
+				display: block;
+				height: 8px;
+				width: 8px;
+				border: 1px solid;
+				border-color: #7ad1f3 #54c8f2 #22b9f0 #54c8f2;
+				-webkit-border-radius: 5px;
+				border-radius: 5px;
+				background: -webkit-gradient(linear, left bottom, left top,
+					color-stop(0, #10b3f0),
+					color-stop(1, #48c3f0)
+				);
+			}
+		
+		#conversation .voicemail.read .new {
+			display: none;
+		}
+		
+		#conversation .voicemail div.body {
+		}
+		
+		#conversation .voicemail .control {
+			float: left;
+			width: 16px;
+			height: 16px;
+			background-image: url(../gfx/buttons-32-ultra.png);
+			background-repeat:	no-repeat;
+			background-position: 0 0;
+			margin: 0px 13px 5px 0;
+		}
+		
+		#conversation .voicemail .control.play {
+			background-position: -8px -8px;
+		}
+
+		#conversation .voicemail .control.play:active {
+			background-position: -40px -8px;
+		}		 
+		
+		#conversation .voicemail .control.stop {
+			background-position: -8px -72px;
+		}
+
+		#conversation .voicemail .control.stop:active {
+			background-position: -40px -72px;
+		}
+		
+		#conversation .voicemail .delete {
+			margin: 2px 0 0 0;
+			display: block;
+			float: right;
+		}
+		
+		#conversation .voicemail .duration {
+			color: rgba(0, 0, 0, 0.30);
+			float: right;
+			margin: -14px 20px 0 0;
+			text-align: right;
+		}
+		
+		#conversation .voicemail .played {
+			color: rgba(0, 0, 0, 0.30);
+			float: left;
+			margin: -14px 0 0 0;
+		}
+		
+			
+	/* File transfer */
+
+	#conversation .transfer {
+		padding: 0 7px;
+		background: #fff;
+		border-top: 1px solid #efefef;
+	}
+
+	#conversation .transfer:first-child {
+		border-top: none;
+	}
+
+	#conversation .transfer:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+
+		#conversation .transfer .container {
+			padding: 5px 0;
+		}
+		
+		#conversation .transfer.out {
+			background: #f2faff;
+		}
+
+		#conversation .transfer .head {
+			color: rgba(0, 0, 0, 0.30);
+			clear: both;
+		}
+		
+			#conversation .transfer .head .avatar {
+				display: none;
+			}
+			
+		
+			#conversation .transfer .head:first-child .avatar {
+				display: block;
+			}
+
+		#conversation .transfer .sender {
+			font-weight: bold;
+			float: left;
+			margin-right: 10px;
+		}
+
+			#conversation .transfer .sender a {
+				color: rgba(0, 0, 0, 0.30);
+				text-decoration: none;
+			}
+
+		#conversation .transfer .time {
+			color: #000;
+			opacity: 0.3;
+			float: right;
+			height: 14px;
+		}
+
+		#conversation .transfer .avatar {
+			float: left;
+			margin: 2px 0 0 -54px;
+		}
+		
+		#conversation .transfer div.body {
+			clear: both;
+		}
+		
+		#conversation .transfer .icon {
+			display: none;
+		}
+
+		#conversation .transfer .delete,
+		#conversation .transfer .cancel,
+		#conversation .transfer .quicklook,
+		#conversation .transfer .reveal {
+			float: right;
+			margin: 11px 0 0 0;
+		}
+		
+		#conversation .transfer.out .cancel {
+			display: block;
+		}
+		
+		#conversation .transfer .connecting .cancel {
+			display: block;
+		}
+		
+		#conversation .transfer .delete {
+			background-position: 0 0;
+		}
+		
+		#conversation .transfer .cancel {
+			background-position: 0 0;
+		}
+		
+		#conversation .transfer .reveal {
+			background-position: 0 -56px;
+		}
+		
+		#conversation .transfer .quicklook {
+			background-position: 0 -42px;
+		}
+		
+		#conversation .transfer .name {
+			display: block;
+			color: #000;
+			margin: 0 0 -3px 0;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+		
+		#conversation .transfer.out .name {
+			margin-top: 0px;
+		}
+		
+		#conversation .transfer .connecting .name {
+			margin-top: 0;
+		}
+		
+		#conversation .transfer .size {
+			color: rgba(0, 0, 0, 0.30);
+			margin: 4px 0 0 0;
+		}
+		
+		#conversation .transfer .accept {
+			float: right;
+			margin: 5px 0 0 7px;
+		}
+		
+		#conversation .transfer .decline {
+			float: right;
+			margin: 5px 0 0 7px;
+		}
+		
+		#conversation .transfer .main {
+			margin-bottom: 0;
+			clear: both;
+		}
+		
+		#conversation .transfer .sub .accept {
+			margin-top: 3px;
+		}
+		
+		#conversation .transfer .sub .decline {
+			margin-top: 3px;
+		}
+		
+		#conversation .transfer .main + .sub.open {
+			margin-top: 0;
+		}
+		
+		#conversation .transfer.out .main + .sub {
+			margin-bottom: 0;
+		}
+		
+		#conversation .transfer.out .main + .sub.open {
+			margin-top: 0;
+		}
+		
+		#conversation .transfer .main.running + .sub.open {
+			margin-top: 0;
+		}
+		
+		#conversation .transfer .main:last-child {
+			margin-bottom: 0;
+		}
+		
+		#conversation .transfer .connecting.main:last-child {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer .main .name {
+			padding-left: 13px;
+			cursor: default;
+			background: url(../gfx/buttons-9.png) no-repeat 0 3px;
+			max-width: 100px;
+		}
+		
+		#conversation .transfer .main .name.open {
+			background: url(../gfx/buttons-9.png) no-repeat 0 -15px;
+		}
+		
+		#conversation .transfer .main:last-child .name {
+			padding-left: 0;
+			background: transparent;
+			cursor: inherit;
+			max-width: 100%;
+		}
+		
+		#conversation .transfer .main.running {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer .main.connecting {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer .main.running:last-child {
+			margin-bottom: 1px;
+		}
+		
+		#conversation .transfer.out .main {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .main:last-child {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .main.completed:last-child {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .main.completed {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .main.completed + .sub.open {
+			margin-top: 0px;
+		}
+		
+		#conversation .transfer.out .completed {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .sub.open {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .sub.open:last-child {
+			margin-bottom: 0;
+		}
+		
+		#conversation .transfer.out .sub.completed {
+			margin-bottom: 0;
+		}
+		
+		#conversation .transfer.out .sub.running {
+			margin-bottom: 0;
+		}
+		
+		
+		#conversation .transfer.out .sub.completed.open {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .sub.completed.open:last-child {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .sub.running.open {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer.out .sub.running.open:last-child {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer .sub {
+			margin-left: 25px;
+			margin-bottom: 0;
+			clear: both;
+			height: 0;
+			overflow: hidden;
+		}
+		
+		#conversation .transfer .sub.open {
+			margin-top: 0px;
+			margin-bottom: 0px;
+			padding-top: 0px;
+			height: auto;
+		}
+		
+		#conversation .transfer .sub.running.open {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer .sub.open:last-child {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer .sub.running:last-child {
+			margin-bottom: 0px;
+		}
+		
+		#conversation .transfer .progressbar {
+			margin: 2px 36px 0 0;
+		}
+		
+		#conversation .transfer.in .progressbar {
+			display: none;
+		}
+		
+			#conversation .transfer.in .connecting .progressbar {
+				display: block;
+			}
+		
+			#conversation .transfer.out .progressbar .progress.hidden,
+			#conversation .transfer .connecting .progressbar .progress.hidden {
+				width: 100%;
+				display: block !important;
+				background-image: url(../gfx/asset-sprite.png);
+				background-repeat: repeat-x;
+				background-position: 0 0;
+				border: 1px solid rgba(0, 0, 0, 0);
+				opacity: 0.1;
+			}
+		
+			#conversation .transfer .running .progressbar {
+				display: block;
+				margin-bottom: -2px;
+			}
+			
+			#conversation .transfer .connecting .progressbar {
+				display: block;
+				margin-bottom: -2px;
+			}
+			
+			#conversation .transfer.out .progressbar {
+				margin-bottom: -2px;
+			}
+			
+				#conversation .transfer.out .running .progressbar .total {
+					background: -webkit-gradient(linear, left bottom, left top,
+						color-stop(0, #f0f0f0),
+						color-stop(0.8, #e8e8e8),
+						color-stop(1, #dbdbdb)
+					);
+				}
+						
+			#conversation .transfer .running .accept,
+			#conversation .transfer .running .decline {
+				display: none;
+			}
+			
+			#conversation .transfer .running .cancel {
+				display: block;
+			}
+			
+			#conversation .transfer .running .name {
+				margin-top: 0px;
+			}
+			
+			#conversation .transfer .sub.running .name {
+				margin-top: -1px;
+			}
+
+		#conversation .transfer .completed .quicklook,
+		#conversation .transfer .completed .reveal,
+		#conversation .transfer .completed .delete {
+			display: block;
+			margin-top: 11px;
+		}
+		
+		#conversation .transfer .connecting .accept,
+		#conversation .transfer .connecting .decline {
+			display: none;
+		}
+		
+		#conversation .transfer .missing .quicklook,
+		#conversation .transfer .missing .reveal,
+		#conversation .transfer .missing .delete {
+			display: none;
+		}
+		
+		#conversation .transfer .connecting .accept,
+		#conversation .transfer .connecting .decline {
+			display: none;
+		}
+		
+		#conversation .transfer .sub .quicklook,
+		#conversation .transfer .sub .reveal,
+		#conversation .transfer .sub .delete {
+			margin-top: 7px;
+		}
+		
+		#conversation .transfer .sub .cancel {
+			margin-top: 11px;
+		}
+		
+		#conversation .transfer .main .reveal {
+			display: none;
+		}
+		
+		#conversation .transfer.in .main.completed:last-child .quicklook,
+		#conversation .transfer.in .main.completed:last-child .reveal {
+			display: block;
+		}
+		
+		#conversation .transfer.out .main.completed:last-child .quicklook,
+		#conversation .transfer.out .main.completed:last-child .reveal,
+		#conversation .transfer.out .main.cancelled:last-child .quicklook,
+		#conversation .transfer.out .main.cancelled:last-child .reveal {
+			display: block;
+		}
+		
+		#conversation .transfer.in .completed.cancelled .quicklook,
+		#conversation .transfer.in .completed.cancelled .reveal,
+		#conversation .transfer.in .completed.failed .quicklook,
+		#conversation .transfer.in .completed.failed .reveal {
+			display: none !important;
+		}
+		
+		#conversation .transfer .completed .quicklook,
+		#conversation .transfer .completed .reveal {
+			margin-left: 7px;
+		}
+		
+		#conversation .transfer .completed .accept,
+		#conversation .transfer .completed .decline {
+			display: none;
+		}
+		
+		#conversation .transfer .missing .accept,
+		#conversation .transfer .missing .decline {
+			display: none;
+		}
+		
+		#conversation .transfer.out .completed .cancel {
+			display: none;
+		}
+		
+		#conversation .transfer.out .completed .name {
+			margin-top: 0px;
+		}
+		
+		#conversation .transfer .missing .name {
+			opacity: 0.65;
+		}
+		
+		#conversation .transfer.out .completed .progressbar {
+			display: none;
+		}
+			
+
+	/* Loading */
+
+	#conversation .history {
+		padding: 0 7px;
+		background: #fff;
+		text-align: center;
+		border-top: 1px solid #efefef;
+	}
+
+	#conversation .history:first-child {
+		border-top: none;
+	}
+
+	#conversation .history:last-child {
+		border-bottom: 1px solid #efefef;
+	}
+
+		#conversation .history .container {
+			padding: 5px 0;
+		}
+
+		#conversation .history div.body {
+			font-weight: bold;
+			color: rgba(0, 0, 0, 0.3);
+		}
+		
+		#conversation .history a {
+			color: rgba(0, 126, 196, 0.9);
+		}
+		
+			#conversation .history div.body span.history-more {
+				padding-left: 10px;
+				font-weight: normal;
+			}
+			
+				#conversation .history div.body span.history-more a {
+				}
+				
+		#conversation .history .vertical-separator {
+			display: inline-block;
+			width: 2px;
+			height: 2px;
+			margin: 0 5px 3px 5px;
+			background: rgba(180, 180, 180, 0.9);
+		}
+		
+		#conversation .history .vertical-separator:last-child {
+			display: none;
+		}
+
+	/* Typing indicator */
+	
+	#conversation .typing {
+		padding: 0 13px 0 36px;
+		border-top: 1px solid #efefef;
+		background: url(../gfx/typing-16x16-white.gif) no-repeat 10px 4px;
+	}
+	
+		#conversation .typing .container {
+			padding: 5px 127px 5px 0;
+			min-height: 16px;
+		}
+	
+	#conversation .typing.invisible {
+		background: none;
+	}
+	
+		#conversation .typing.invisible .container {
+			visibility: hidden;
+		}
+	
+	
+		#conversation .typing .head {
+			color: rgba(0, 0, 0, 0.30);
+		}
+	
+		#conversation .typing .sender {
+			font-weight: bold;
+		}
