@@ -36,6 +36,10 @@ var Extended = {
     }*/ 
   },
   
+  emoticons: {
+      "sheep": "sheep.jpg"
+  },
+  
   extend: {
     enhanceMessage: function(html) {
       /****************************************************************************************************
@@ -49,6 +53,11 @@ var Extended = {
       
       // IMAGE SUBSTITUTION
       html = html.replace(/>(http:\/\/([\S]+\.(jpg|jpeg|png|gif)))<\/a>/ig, '><img src="$1" class="ex-image" /></a>');
+      
+      // EMOTICONS
+      $.each(Extended.emoticons, function(key, value){
+          html = html.replace("("+key+")", '<img src="gfx/emoticons/'+value+'" class="emoticon styleshift_emoticon" />');
+      });
       
       // TEST
       html = html.replace(/#flickr/i, '<a href="http://www.flickr.com"><img src="http://l.yimg.com/g/images/en-us/flickr-yahoo-logo.png.v3" /></a>');
