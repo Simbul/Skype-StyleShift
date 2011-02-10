@@ -15,9 +15,9 @@ Because the new Skype chat is WebKit powered, and we enhanced it using HTML, CSS
 This is how:
 
 * Download and open the ZIP file with the StyleShift style
-* From inside your user folder open: ~/Library/Application Support/Skype/<yourname>/ChatStyles
+* From inside your user folder open: ~/Library/Application Support/Skype/ChatStyles
 * If the folder "ChatStyles" doesn't exist, create it
-* Put inside ChatStyles the file "StyleShift.SkypeChatStyle" from the downloaded ZIP
+* Put the file "StyleShift.SkypeChatStyle" from the downloaded ZIP inside the ChatStyles folder
 * (Re)start Skype
 * Go to Skype -> Preferences -> Messaging -> Style and choose "StyleShift"
 * Restart Skype
