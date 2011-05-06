@@ -37,7 +37,8 @@ var Extended = {
   },
   
   emoticons: {
-      "sheep": "sheep.jpg"
+      "sheep": "sheep.jpg",
+      "partysnake": "partysnake.gif"
   },
   
   extend: {
