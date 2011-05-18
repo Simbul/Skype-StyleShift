@@ -455,6 +455,11 @@ SCS.Conversation = function() {
 	this.appendItem = function(html, scroll) {
 		if (_container.length > 0) {
 			var atEnd = self._nearBottom();
+			
+      // \/ INJECTION
+      html = Extended.extend.enhanceMessage(html);
+      // /\ INJECTION
+      
 			if ($("#typing").length > 0) {
 				$("#conversation #typing").before(html);
 			} else {

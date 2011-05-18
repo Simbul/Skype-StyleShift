@@ -50,18 +50,18 @@ var Extended = {
        * -> Html template: InMessage.html
        */
       
-      //html = html.replace(/(http:\/\/www.flickr.com\/photos\/([a-z0-9@]+_)\/([0-9]+)\/)/i, '<a href="#"><img src="" /></a>');
-      
-      // IMAGE SUBSTITUTION
-      html = html.replace(/>(http:\/\/([\S]+\.(jpg|jpeg|png|gif)))<\/a>/ig, '><img src="$1" class="ex-image" /></a>');
-      
       // EMOTICONS
       $.each(Extended.emoticons, function(key, value){
           html = html.replace("("+key+")", '<img src="gfx/emoticons/'+value+'" class="emoticon styleshift_emoticon" />');
       });
       
+      // Image substitution with external images is not working anymore since Skype 5.1.0.935 :(
+      
+      // IMAGE SUBSTITUTION
+      //html = html.replace(/>(http:\/\/([\S]+\.(jpg|jpeg|png|gif)))<\/a>/ig, '><img src="$1" class="ex-image" /></a>');
+      
       // TEST
-      html = html.replace(/#flickr/i, '<a href="http://www.flickr.com"><img src="http://l.yimg.com/g/images/en-us/flickr-yahoo-logo.png.v3" /></a>');
+      //html = html.replace(/#flickr/i, '<a href="http://www.flickr.com"><img src="http://l.yimg.com/g/images/en-us/flickr-yahoo-logo.png.v3" /></a>');
       
       return html;
     }
