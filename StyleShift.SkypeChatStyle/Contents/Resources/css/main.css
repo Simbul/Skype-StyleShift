@@ -1,6 +1,6 @@
 body {
-	font: normal 15px/22px Helvetica, Arial, sans-serif;
-	color: rgba(0, 0, 0, 1.0);
+	font: normal 13px/20px "Helvetica Neue", Arial, sans-serif;
+	color: rgba(30, 30, 30, 1.0);
 }
 
 strong {
@@ -9,10 +9,6 @@ strong {
 
 .hidden {
 	display: none;
-}
-
-#conversation {
-	min-width: 500px;
 }
 
 	/* Conversation items */
@@ -33,9 +29,16 @@ strong {
 
 			#conversation .item div.body a:hover {
 				color: #007ec4;
-				border-bottom: 1px dotted #007ec4;
 				text-decoration: none;
 			}
+		
+		#conversation .item div.body .highlight {
+			padding: 1px 3px;
+			background: rgba(0, 175, 240, 0.35);
+			-webkit-border-radius: 3px;
+		}
+		
+
 		#conversation .item .pill {
 			height: 22px;
 			padding: 0;
@@ -57,7 +60,8 @@ strong {
 		#conversation .item .quicklook,
 		#conversation .item .reveal,
 		#conversation .item .cancel,
-		#conversation .item .edit {
+		#conversation .item .edit,
+		#conversation .item .actions {
 			width: 14px;
 			height: 14px;
 			background: url(../gfx/buttons-14.png) no-repeat 0 0;
@@ -66,11 +70,18 @@ strong {
 			opacity: 0.25;
 		}
 		
+		#conversation .item .actions {
+			-webkit-transition: opacity 0.05s linear 0.1s;
+			display: block;
+			opacity: 0;
+		}
+		
 		#conversation .item .delete:hover,
 		#conversation .item .quicklook:hover,
 		#conversation .item .reveal:hover,
 		#conversation .item .cancel:hover,
-		#conversation .item .edit:hover {
+		#conversation .item .edit:hover,
+		#conversation .item .actions:hover {
 			opacity: 0.35;
 		}
 		
@@ -78,10 +89,10 @@ strong {
 		#conversation .item .quicklook:active,
 		#conversation .item .reveal:active,
 		#conversation .item .cancel:active,
-		#conversation .item .edit:active {
+		#conversation .item .edit:active,
+		#conversation .item .actions:active {
 			opacity: 0.45;
 		}
-		
 		
 		#conversation .item .pill:active {
 			-webkit-border-image: url(../gfx/generic-pill-down.png) 1 12 repeat;
@@ -177,17 +188,54 @@ strong {
 			padding-right: 22px;
 			background: url(../gfx/buttons-14.png) no-repeat right -28px;
 		}
+		
+		#conversation .item .sender {
+			position: relative;
+			font-size: 12px;
+		}
+		
+		#conversation .item .sender a {
+			color: rgba(0, 0, 0, 0.30);
+			text-decoration: none;
+			-webkit-transition: color 0.1s linear;
+		}
+		
+		#conversation .item .sender a:hover {
+			color: #007ec4;
+		}
+
+			#conversation .item .sender .profile {
+				display: none;
+				position: absolute;
+				width: 22px;
+				height: 22px;
+				left: -48px;
+				top: 9px;
+				background: url(../gfx/buttons-22.png) no-repeat 0 0;
+			}
+			
+			#conversation .item .sender .profile:active {
+				background: url(../gfx/buttons-22.png) no-repeat 0 -22px;
+			}
 
 	#conversation .emoticon {
 		vertical-align: middle;
-		margin: -5px 0 0 0;
+		margin: -4px 0 0 0;
 	}
 	
+	#conversation br + br {
+		margin-top: -10px;
+	}
+
 	/* Chat messages */
 	
 	#conversation .message {
 		padding: 0 23px 0 76px;
-		border-top: 1px solid #dadada;
+		border-top: 1px solid #ececec;
+	}
+	
+	#conversation.compact .message {
+		padding-left: 23px;
 	}
 	
 	#conversation .message:first-child {
@@ -195,11 +243,27 @@ strong {
 	}
 	
 	#conversation .message:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 	
 	#conversation .message.in:last-child {
 		border-bottom: none;
+	}
+	
+	#conversation .message:hover .actions {
+		opacity: 0.25;
+	}
+	
+	#conversation .message:hover .actions:hover {
+		opacity: 0.35;
+	}
+	
+	#conversation .message:hover .actions:active {
+		opacity: 0.45;
+	}
+	
+	#conversation .message:hover .time {
+		opacity: 0;
 	}
 	
 	#conversation .message.out {
@@ -207,9 +271,9 @@ strong {
 	}
 
 		#conversation .message .container {
-			padding: 20px 0 18px 0;
+			padding: 12px 0 10px 0;
 		}
-		
+
 		#conversation .message .head {
 			font: normal 11px/13px "Lucida Grande", sans-serif;
 			color: rgba(0, 0, 0, 0.30);
@@ -218,12 +282,7 @@ strong {
 		#conversation .message .sender {
 			font-weight: bold;
 		}
-		
-			#conversation .message .sender a {
-				color: rgba(0, 0, 0, 0.30);
-				text-decoration: none;
-			}
-		
+
 		#conversation .message .time {
 			float: right;
 			margin-left: -127px;
@@ -231,6 +290,12 @@ strong {
 			color: #000;
 			opacity: 0.3;
 			min-height: 14px;
+			margin-top: 20px;
+			-webkit-transition: opacity 0.05s linear 0.1s;
+		}
+		
+		#conversation.compact .message .time {
+			margin-top: 0;
 		}
 		
 		#conversation .message.edited .time {
@@ -241,42 +306,56 @@ strong {
 		#conversation .message .delete {
 			background-position: 0 0;
 			float: right;
-			margin: 5px 0 0 -14px;
+			margin: 3px 0 0 -14px;
+		}
+		
+		#conversation .message .actions {
+			background-position: 0 -84px;
+			float: right;
+			margin: 20px 0 0 -14px;
+		}
+		
+		#conversation.compact .message .actions {
+			margin-top: 0;
 		}
 		
 		#conversation .message .edit {
 			background-position: 0 -70px;
 			float: left;
-			margin: 5px 0 0 -45px;
+			margin: 3px 0 0 -45px;
 		}
 		
 		#conversation .message .avatar {
 			float: left;
-			margin: 2px 0 0 -53px;
+			margin: 1px 0 0 -53px;
 		}
 		
-		#conversation .message.in.followup .container {
-			padding-top: 15px;
+		#conversation.compact .message .avatar {
+			display: none !important;
 		}
-		
-		#conversation .message.in.followup .time {
-			margin-top: 6px;
-		}
-
-		#conversation .message.out .container {
-			padding-top: 15px;
-		}
-		
-		#conversation .message.out .sender {
+		#conversation.compact .message.followup .time {
 			display: none;
 		}
-
-		#conversation .message.out .time {
-			margin-top: 5px;
+		
+		#conversation .message.followup .time {
+			margin-top: 7px;
 		}
 		
+		#conversation .message.followup .actions {
+			margin-top: 7px;
+		}
+
 		#conversation .message div.body {
+			padding-top: 4px;
 			padding-right: 127px;
+		}
+		
+		#conversation .message.out .avatar {
+			display: none;
+		}
+		
+		#conversation.compact .message div.body {
+			padding-right: 21px;
 		}
 		
 			#conversation .message div.body a:visited:after {
@@ -295,16 +374,12 @@ strong {
 				text-decoration: none;
 			}
 	
-		#conversation .message.editable:hover .delete,
-		#conversation .message.editable:hover .edit {
-			display: block;
-		}
-		
-		#conversation .message.editable.deleted:hover .delete {
+		#conversation.compact .message.editable:hover .delete,
+		#conversation.compact .message.editable:hover .edit {
 			display: none;
 		}
 		
-		#conversation .message.editable:hover .time {
+		#conversation .message.editable.deleted:hover .delete {
 			display: none;
 		}
 		
@@ -315,16 +390,16 @@ strong {
 	#conversation .message.followup {
 		border-top: none;
 	}
-
+	
 		#conversation .message.followup .container {
-			border-top: 1px dashed #dadada;
+			padding-top: 0;
 		}
-		
+
 		#conversation .message.followup .avatar,
 		#conversation .message.followup .sender {
 			display: none;
 		}
-
+		
 	#conversation .message.read {
 		color: rgba(0, 0, 0, 0.60);
 	}
@@ -336,7 +411,7 @@ strong {
 	#conversation .message .body.editMode {
 		border: 1px solid #ccc;
 		padding-left: 3px;
-		padding-right: 30px;
+		padding-right: 3px;
 		background: #fff;
 		margin: -1px 123px -1px -4px;
 		-webkit-box-shadow: 0px 0px 10px #ccc;
@@ -348,9 +423,17 @@ strong {
 
 	#conversation .sms {
 		padding: 0 23px 0 76px;
+		border-top: 1px solid #ececec;
+	}
+	
+	#conversation .sms.out {
 		border-top: 1px solid #e5e5c3;
 		background: #ffffe1;
 	}
+	
+	#conversation.compact .sms {
+			padding-left: 23px;
+		}
 	
 	#conversation .sms:first-child {
 		border-top: none;
@@ -361,14 +444,14 @@ strong {
 	}
 
 		#conversation .sms .container {
-			padding: 20px 0 18px 0;
+			padding: 12px 0 10px 0;
 		}
 		
 		#conversation .sms .head {
 			font: normal 11px/13px "Lucida Grande", sans-serif;
 			color: rgba(0, 0, 0, 0.30);
 			margin-bottom: 10px;
-			border-bottom: 1px dashed #cbcbad;
+			border-bottom: 1px dotted #cbcbad;
 			padding-bottom: 11px;
 		}
 		
@@ -379,6 +462,10 @@ strong {
 		
 			#conversation .sms .head:first-child .avatar {
 				display: block;
+			}
+			
+			#conversation.compact .sms .head .avatar {
+				display: none !important;
 			}
 		
 		#conversation .sms .sender {
@@ -402,6 +489,10 @@ strong {
 		#conversation .sms div.body {
 			padding: 4px 127px 0 0;
 		}
+		
+		#conversation.compact .sms div.body {
+			padding-right: 0;
+		}
 
 	#conversation .sms.read {
 		color: rgba(0, 0, 0, 0.60);
@@ -411,20 +502,24 @@ strong {
 	
 	#conversation .call {
 		padding: 0 23px 0 76px;
-		border-top: 1px solid #dadada;
+		border-top: 1px solid #ececec;
 		background: #fff;
 	}
+	
+	#conversation.compact .call {
+			padding-left: 23px;
+		}
 	
 	#conversation .call:first-child {
 		border-top: none;
 	}
 	
 	#conversation .call:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 		#conversation .call .container {
-			padding: 20px 0 18px 0;
+			padding: 12px 0 10px 0;
 		}
 		
 		#conversation .call .head {
@@ -445,31 +540,37 @@ strong {
 		#conversation .call .time {
 			float: right;
 			margin-left: -127px;
+			margin-top: 3px;
 			text-align: right;
 		}
 		
 		#conversation .call .avatar {
 			float: left;
-			margin: 2px 0 0 -53px;
+			margin: -7px 0 0 -53px;
+		}
+		
+		#conversation.compact .call .avatar {
+			display: none;
 		}
 		
 		#conversation .call div.body {
 			font-weight: bold;
 			padding-right: 127px;
+			margin-top: -4px;
 			overflow: visible;
 		}
 		
 			#conversation .call div.body .duration {
-				float: right;
-				margin-right: -127px;
 				color: rgba(0, 0, 0, 0.60);
+				font-weight: normal;
+				padding-left: 7px;
 			}
 	
 	/* Emote */
 	
 	#conversation .emote {
-		padding: 0 150px;
-		border-top: 1px solid #dadada;
+		padding: 0 23px;
+		border-top: 1px solid #ececec;
 		background: #fff;
 		text-align: center;
 	}
@@ -479,11 +580,11 @@ strong {
 	}
 	
 	#conversation .emote:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 		#conversation .emote .container {
-			padding: 20px 0 18px 0;
+			padding: 12px 0 10px 0;
 		}
 		
 		#conversation .emote .head {
@@ -496,7 +597,11 @@ strong {
 			float: left;
 			margin-left: -128px;
 			margin-right: -76px;
-			margin-top: 2px;
+			margin-top: 1px;
+		}
+		
+		#conversation.compact .emote .avatar {
+			display: none;
 		}
 		
 		#conversation .emote div.body {
@@ -507,8 +612,8 @@ strong {
 	/* Topic */
 
 	#conversation .topic {
-		padding: 0 150px;
-		border-top: 1px solid #dadada;
+		padding: 0 23px;
+		border-top: 1px solid #ececec;
 		background: #fff;
 		text-align: center;
 	}
@@ -518,11 +623,11 @@ strong {
 	}
 
 	#conversation .topic:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 		#conversation .topic .container {
-			padding: 20px 0 18px 0;
+			padding: 12px 0 10px 0;
 		}
 
 		#conversation .topic .head {
@@ -535,7 +640,7 @@ strong {
 			float: left;
 			margin-left: -128px;
 			margin-right: -76px;
-			margin-top: 2px;
+			margin-top: 1px;
 		}
 
 		#conversation .topic div.body {
@@ -559,22 +664,22 @@ strong {
 	/* Alert */
 
 	#conversation .alert {
-		padding: 0 150px;
-		border-top: 1px solid #dadada;
+		padding: 0 23px;
+		border-top: 1px solid #ececec;
 		background: #fff;
 		text-align: center;
 	}
-
+	
 	#conversation .alert:first-child {
 		border-top: none;
 	}
 
 	#conversation .alert:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 		#conversation .alert .container {
-			padding: 20px 0 18px 0;
+			padding: 12px 0 10px 0;
 		}
 
 		#conversation .alert .head {
@@ -587,7 +692,7 @@ strong {
 			float: left;
 			margin-left: -128px;
 			margin-right: -76px;
-			margin-top: 2px;
+			margin-top: 1px;
 		}
 
 		#conversation .alert div.body {
@@ -600,8 +705,12 @@ strong {
 	
 	#conversation .voicemail {
 		padding: 0 23px 0 76px;
-		border-top: 1px solid #dadada;
+		border-top: 1px solid #ececec;
 		background: #fff;
+	}
+	
+	#conversation.compact .voicemail {
+		padding-left: 23px;
 	}
 	
 	#conversation .voicemail:first-child {
@@ -609,18 +718,18 @@ strong {
 	}
 	
 	#conversation .voicemail:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 		#conversation .voicemail .container {
-			padding: 20px 0 11px 0;
+			padding: 12px 0 11px 0;
 		}
 		
 		#conversation .voicemail .head {
 			font: normal 11px/13px "Lucida Grande", sans-serif;
 			color: rgba(0, 0, 0, 0.30);
 			margin-bottom: 11px;
-			border-bottom: 1px dashed #dadada;
+			border-bottom: 1px dotted #dadada;
 			padding-bottom: 11px;
 		}
 		
@@ -640,7 +749,11 @@ strong {
 		
 		#conversation .voicemail .avatar {
 			float: left;
-			margin: 2px 0 0 -53px;
+			margin: 1px 0 0 -53px;
+		}
+		
+		#conversation.compact .voicemail .avatar {
+			display: none;
 		}
 		
 		#conversation .voicemail .new {
@@ -673,13 +786,14 @@ strong {
 				);
 			}
 		
+		#conversation.compact .voicemail .new {
+			margin: 0 8px 0 0;
+		}
+
 		#conversation .voicemail.read .new {
 			display: none;
 		}
-		
-		#conversation .voicemail div.body {
-		}
-		
+
 		#conversation .voicemail .control {
 			float: left;
 			width: 32px;
@@ -708,7 +822,8 @@ strong {
 		
 		#conversation .voicemail .delete {
 			margin: 17px 0 0 0;
-			display: block;
+			/* display: block; */
+			display: none;
 			float: right;
 		}
 		
@@ -732,8 +847,12 @@ strong {
 
 	#conversation .transfer {
 		padding: 0 23px 0 76px;
-		border-top: 1px solid #dadada;
+		border-top: 1px solid #ececec;
 		background: #fff;
+	}
+	
+	#conversation.compact .transfer {
+		padding-left: 23px;
 	}
 
 	#conversation .transfer:first-child {
@@ -741,11 +860,11 @@ strong {
 	}
 
 	#conversation .transfer:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 		#conversation .transfer .container {
-			padding: 20px 0 7px 0;
+			padding: 12px 0 7px 0;
 		}
 		
 		#conversation .transfer.out {
@@ -756,7 +875,7 @@ strong {
 			font: normal 11px/13px "Lucida Grande", sans-serif;
 			color: rgba(0, 0, 0, 0.30);
 			margin-bottom: 10px;
-			border-bottom: 1px dashed #dadada;
+			border-bottom: 1px dotted #dadada;
 			padding-bottom: 11px;
 		}
 		
@@ -764,9 +883,12 @@ strong {
 				display: none;
 			}
 			
-		
 			#conversation .transfer .head:first-child .avatar {
 				display: block;
+			}
+			
+			#conversation.compact .transfer .head .avatar {
+				display: none !important;
 			}
 
 		#conversation .transfer .sender {
@@ -785,10 +907,17 @@ strong {
 			text-align: right;
 			min-height: 14px;
 		}
+		
+		#conversation.compact .transfer .time {
+			width: 1px;
+			overflow: hidden;
+			color: rgba(0, 0, 0, 0);
+			height: 14px;
+		}
 
 		#conversation .transfer .avatar {
 			float: left;
-			margin: 2px 0 0 -54px;
+			margin: 1px 0 0 -54px;
 		}
 		
 		#conversation .transfer div.body {
@@ -1010,7 +1139,7 @@ strong {
 		#conversation .transfer .sub.open {
 			margin-top: 7px;
 			margin-bottom: 16px;
-			border-top: 1px dashed #dadada;
+			border-top: 1px dotted #dadada;
 			padding-top: 11px;
 			height: auto;
 		}
@@ -1191,27 +1320,28 @@ strong {
 	/* Loading */
 
 	#conversation .history {
-		padding: 0 76px;
-		border-top: 1px solid #dadada;
+		padding: 0 23px;
+		border-top: 1px solid #ececec;
 		background: #fff;
 		text-align: center;
 	}
-
+	
 	#conversation .history:first-child {
 		border-top: none;
 	}
 
 	#conversation .history:last-child {
-		border-bottom: 1px solid #dadada;
+		border-bottom: 1px solid #e5e5e5;
 	}
 
 		#conversation .history .container {
-			padding: 14px 0 18px 0;
+			padding: 8px 0 10px 0;
 		}
 
 		#conversation .history div.body {
 			font-weight: bold;
 			color: rgba(0, 0, 0, 0.3);
+			word-wrap: normal;
 		}
 		
 		#conversation .history a {
@@ -1224,6 +1354,7 @@ strong {
 			}
 			
 				#conversation .history div.body span.history-more a {
+					white-space: nowrap;
 				}
 				
 		#conversation .history .vertical-separator {
@@ -1242,7 +1373,7 @@ strong {
 	
 	#conversation .typing {
 		padding: 0 23px 0 76px;
-		border-top: 1px solid #dadada;
+		border-top: 1px solid #ececec;
 		background: url(../gfx/typing-16x16-white.gif) no-repeat 30px 19px;
 	}
 	

@@ -63,7 +63,8 @@ strong {
 		#conversation .item .quicklook,
 		#conversation .item .reveal,
 		#conversation .item .cancel,
-		#conversation .item .edit {
+		#conversation .item .edit,
+		#conversation .item .actions {
 			width: 14px;
 			height: 14px;
 			background: url(../gfx/buttons-14.png) no-repeat 0 0;
@@ -72,11 +73,17 @@ strong {
 			opacity: 0.25;
 		}
 		
+		#conversation .item .actions {
+			display: block;
+			opacity: 0;
+		}
+		
 		#conversation .item .delete:hover,
 		#conversation .item .quicklook:hover,
 		#conversation .item .reveal:hover,
 		#conversation .item .cancel:hover,
-		#conversation .item .edit:hover {
+		#conversation .item .edit:hover,
+		#conversation .item .actions:hover {
 			opacity: 0.35;
 		}
 		
@@ -84,7 +91,8 @@ strong {
 		#conversation .item .quicklook:active,
 		#conversation .item .reveal:active,
 		#conversation .item .cancel:active,
-		#conversation .item .edit:active {
+		#conversation .item .edit:active,
+		#conversation .item .actions:active {
 			opacity: 0.45;
 		}
 		
@@ -208,6 +216,22 @@ strong {
 		border-bottom: none;
 	}
 	
+	#conversation .message:hover .actions {
+		opacity: 0.25;
+	}
+	
+	#conversation .message:hover .actions:hover {
+		opacity: 0.35;
+	}
+	
+	#conversation .message:hover .actions:active {
+		opacity: 0.45;
+	}
+	
+	#conversation .message:hover .time {
+		opacity: 0;
+	}
+	
 	#conversation .message.out {
 		background: #f2faff;
 	}
@@ -250,6 +274,12 @@ strong {
 			margin: 0 0 0 -14px;
 		}
 		
+		#conversation .message .actions {
+			background-position: 0 -84px;
+			float: right;
+			margin: 0 0 0 -14px;
+		}
+		
 		#conversation .message .edit {
 			background-position: 0 -70px;
 			float: left;
@@ -266,6 +296,10 @@ strong {
 		}
 		
 		#conversation .message.in.followup .time {
+			margin-top: 6px;
+		}
+		
+		#conversation .message.in.followup .actions {
 			margin-top: 6px;
 		}
 
@@ -439,24 +473,30 @@ strong {
 		#conversation .call .time {
 			float: right;
 			margin-left: -127px;
+			margin-top: 2px;
 			text-align: right;
 		}
 		
 		#conversation .call .avatar {
 			float: left;
-			margin: 2px 0 0 -53px;
+			margin: -7px 0 0 -53px;
+		}
+		
+		#conversation.compact .call .avatar {
+			display: none;
 		}
 		
 		#conversation .call div.body {
 			font-weight: bold;
 			padding-right: 127px;
+			margin-top: -4px;
 			overflow: visible;
 		}
 		
 			#conversation .call div.body .duration {
-				float: right;
-				margin-right: -127px;
 				color: rgba(0, 0, 0, 0.60);
+				font-weight: normal;
+				padding-left: 7px;
 			}
 	
 	/* Emote */

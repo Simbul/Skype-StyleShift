@@ -5,13 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleGetInfoString</key>
-	<string>StyleShift Chat Style</string>
+	<string>Panamericana Chat Style</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.skype.skype.styleshift.style</string>
+	<string>com.skype.skype.panamericana.style</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>CFBundleName</key>
-	<string>StyleShift</string>
+	<string>Panamericana</string>
 	<key>CFBundlePackageType</key>
 	<string>SKP1</string>
 	<key>CFBundleVersion</key>
