@@ -1083,6 +1083,11 @@ SCS.Conversation = function() {
 					self.messageMarkAs(id, status);
 				}
 				if (message != null) {
+				  
+				  // \/ INJECTION
+          message = Extended.extend.enhanceMessage(message);
+          // /\ INJECTION
+				  
 					$(".body", $m).html(message);
 				}
 				if (time != null) {

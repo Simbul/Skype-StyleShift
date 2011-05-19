@@ -1,15 +1,19 @@
 /*
  * StyleShift CSS for Skype 5 Mac
- * last update: 2010-11-06
+ * last update: 2011-05-19
  *
- * Copyright (C) 2010 Davide 'Folletto' Casali
+ * Copyright (C) 2010-2011 Davide 'Folletto' Casali, Alessandro Morandi
  * Released under BSD License.
  */
 
 /* Chat messages */
+body {
+  font-size: 14px;
+  line-height: 2px;
+}
 
 #conversation .message .container {
-	padding: 10px 0 10px 0 !important;
+	padding: 8px 0 8px 0 !important;
 }
 
 /* Extensions */

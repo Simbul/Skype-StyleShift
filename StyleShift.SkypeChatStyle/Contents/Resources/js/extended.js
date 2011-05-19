@@ -1,8 +1,8 @@
 /*
  * StyleShift JS for Skype 5 Mac
- * last update: 2010-11-06
+ * last update: 2011-05-19
  *
- * Copyright (C) 2010 Davide 'Folletto' Casali
+ * Copyright (C) 2010-2011 Davide 'Folletto' Casali, Alessandro Morandi
  * Released under BSD License.
  */
 
