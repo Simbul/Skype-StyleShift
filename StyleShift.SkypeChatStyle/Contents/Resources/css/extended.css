@@ -9,7 +9,7 @@
 /* Chat messages */
 body {
   font-size: 14px;
-  line-height: 2px;
+  line-height: 21px;
 }
 
 #conversation .message .container {
@@ -18,5 +18,7 @@ body {
 
 /* Extensions */
 img.ex-image {
+  min-height: 10px;
+  min-width: 10px;
   max-width: 400px;
 }
