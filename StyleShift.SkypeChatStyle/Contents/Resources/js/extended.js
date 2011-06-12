@@ -55,6 +55,9 @@ var Extended = {
           html = html.replace("("+key+")", '<img src="gfx/emoticons/'+value+'" class="emoticon styleshift_emoticon" />');
       });
       
+      // SPOTIFY URI (regexp based on https://gist.github.com/448545)
+      html = html.replace(/(spotify:(?:(?:artist|album|track|user:[^:]+:playlist):[a-zA-Z0-9]+|user:[^:]+|search:(?:[-\w$\.+!*'(),]+|%[a-fA-F0-9]{2})+))/xg, '<a href="$1">$1</a>');
+      
       // Image substitution with external images is not working anymore since Skype 5.1.0.935 :(
       
       // IMAGE SUBSTITUTION
